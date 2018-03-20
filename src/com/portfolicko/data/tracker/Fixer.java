@@ -32,7 +32,7 @@ public class Fixer extends Thread {
             HttpURLConnection req = (HttpURLConnection) url.openConnection();
             req.connect();
 
-            // Parse Data
+            // Parse PropertyData
             JsonParser jp = new JsonParser();
             JsonElement je = jp.parse(new InputStreamReader((InputStream) req.getContent()));
             JsonObject jo = je.getAsJsonObject();

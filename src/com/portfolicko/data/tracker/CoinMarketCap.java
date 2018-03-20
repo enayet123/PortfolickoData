@@ -14,10 +14,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 
 /**
- * Created by enayethussain on 25/12/2017.
+ * Created by Enayet Hussain on 25/12/2017.
  */
 public class CoinMarketCap extends Thread {
     private String allcoins = "https://api.coinmarketcap.com/v1/ticker/?convert=GBP&limit=10000";
@@ -30,13 +31,14 @@ public class CoinMarketCap extends Thread {
     public void run() {
         String cryptoSql;
         String priceSql;
+        Date date = new Date();
         try {
             // Connect to site and fetch data
             URL url = new URL(this.allcoins);
             HttpURLConnection req = (HttpURLConnection) url.openConnection();
             req.connect();
 
-            // Parse Data
+            // Parse PropertyData
             JsonParser jp = new JsonParser();
             JsonElement je = null;
             try {
@@ -47,8 +49,9 @@ public class CoinMarketCap extends Thread {
                 // If there is a new coin to add
                 if ((cryptoSql = this.insertCryptoQuery(ja)) != null)
                     new DatabaseThread(cryptoSql).start();
-                // If the new insert is not identical to the previous
+                // If the new insert prices are not identical to the previous
                 if (!Objects.equals(priceSql = this.insertPriceQuery(ja), previous.toString())) {
+                    System.out.printf("%1$s %2$td %2$tM %2$tY at %2$tH:%2$tm:%2$ts\n", "Updating prices on ", date);
                     new DatabaseThread(priceSql).start();
                     previous.set(priceSql);
                 }
@@ -88,11 +91,11 @@ public class CoinMarketCap extends Thread {
         }
 
         if (count > 0 && count < 10) {
-            System.out.println("New Coin(s):" + sql.substring(59, sql.length() - 1));
             System.out.println(
                     TextMessage.sendSms(
                             this.getPhoneNumbers(),
-                            "New Coin(s):" + reformatCoins(sql.substring(59, sql.length() - 1)))
+                            "New Coin(s):" + reformatCoins(sql.substring(59, sql.length() - 1))
+                    )
             );
         }
 

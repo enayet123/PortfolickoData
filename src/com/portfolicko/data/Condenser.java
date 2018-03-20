@@ -7,10 +7,11 @@ import com.portfolicko.data.utilities.CoinTracker;
 import com.portfolicko.data.utilities.Previous;
 
 /**
- * Created by enayethussain on 24/12/2017.
+ * Created by Enayet Hussain on 24/12/2017.
  */
 public class Condenser {
     public static void main(String[] args) {
+        System.out.println("Started...");
         CoinTracker ct = new CoinTracker();
         Previous cmcPrevious = new Previous("");
         Previous fPrevious = new Previous("");

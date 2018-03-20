@@ -5,7 +5,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import java.sql.*;
 
 /**
- * Created by enayethussain on 24/12/2017.
+ * Created by Enayet Hussain on 24/12/2017.
  */
 public class Database {
     // JDBC driver name and database URL
@@ -63,7 +63,7 @@ public class Database {
 
     public boolean runInsert(String sql) {
         // Run insert statement
-        System.out.println(sql);
+        //System.out.println(sql);
         try {
             stmt.execute(sql);
         } catch (MySQLIntegrityConstraintViolationException e) {

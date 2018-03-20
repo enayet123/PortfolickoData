@@ -1,0 +1,7 @@
+# Text API Properties
+#Mon Mar 19 17:41:06 GMT 2018
+# Rename file to textapi.prop
+sender=<Company Name>
+hash=<Your hash code here>
+test=1
+username=<Email address>

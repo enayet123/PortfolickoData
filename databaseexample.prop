@@ -1,0 +1,8 @@
+# Database Properties
+#Mon Mar 19 17:41:06 GMT 2018
+# Rename file to database.prop
+ip=127.0.0.1
+port=3306
+database=<database name>
+username=<username>
+password=<password>
